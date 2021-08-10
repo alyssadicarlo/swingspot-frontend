@@ -1,0 +1,44 @@
+.comment {
+    background-color: var(--code-bg) !important;
+    margin-bottom: 8px;
+}
+
+.author-img {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.comment-card button[type="button"] {
+    background-color: var(--theme);
+    color: var(--mainColor);
+    padding: 4px 10px;
+    font-weight: 700;
+    border: 1px solid var(--mainColor);
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.comment-card button[type="button"]:hover {
+    background-color: var(--mainColor);
+    color: var(--theme);
+}
+
+.comment-card button[type="button"]:active {
+    background-color: var(--mainColor);
+    color: var(--theme);
+    border-color: var(--theme);
+}
+
+.comment-card button[type="button"]:focus {
+    background-color: var(--mainColor);
+    color: var(--theme);
+    border-color: var(--theme);
+}

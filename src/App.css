@@ -1,0 +1,93 @@
+:root {
+  --theme: #fff;
+  --entry: #fff;
+  --primary: rgba(0, 0, 0, 0.88);
+  --secondary: rgba(0, 0, 0, 0.56);
+  --tertiary: rgba(0, 0, 0, 0.16);
+  --content: rgba(0, 0, 0, 0.88);
+  --hljs-bg: #1c1d21;
+  --code-bg: #f5f5f5;
+  --border: #eee;
+  --mainColor: #2acddd;
+  --inverse: #fff;
+}
+
+[data-theme="dark"] {
+  --theme: #1d1e20;
+  --entry: #2e2e33;
+  --primary: rgba(255, 255, 255, 0.84);
+  --secondary: rgba(255, 255, 255, 0.56);
+  --tertiary: rgba(255, 255, 255, 0.16);
+  --content: rgba(255, 255, 255, 0.74);
+  --hljs-bg: #2e2e33;
+  --code-bg: #37383e;
+  --border: #333;
+  --mainColor: #2acddd;
+  --inverse: rgba(0, 0, 0, 0.88);
+}
+
+/* [data-theme="light"] {
+  --theme: #fff;
+  --entry: #fff;
+  --primary: rgba(0, 0, 0, 0.88);
+  --secondary: rgba(0, 0, 0, 0.56);
+  --tertiary: rgba(0, 0, 0, 0.16);
+  --content: rgba(0, 0, 0, 0.88);
+  --hljs-bg: #1c1d21;
+  --code-bg: #f5f5f5;
+  --border: #eee;
+  --mainColor: #2acddd;
+  --inverse: #fff;
+} */
+
+body {
+  background: var(--theme);
+  font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,Oxygen,Ubuntu,Cantarell,open sans,helvetica neue,sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.App {
+  min-height: 100vh;
+  background-color: var(--theme);
+}
+
+.list {
+  background: var(--code-bg);
+}
+
+.dark.list {
+  background: var(--theme);
+}
+
+.main {
+  padding: 14px;
+  max-width: 1072px;
+  margin: auto;
+  min-height: calc(100vh - 70px - 70px);
+}
+
+a, button, body, h1, h2, h3, h4, h5, h6, small {
+  color: var(--primary) !important;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section, table {
+  display: block;
+}
+
+a {
+  text-decoration: none !important;
+}

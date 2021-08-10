@@ -1,0 +1,16 @@
+.footer {
+    max-width: calc(720px + 14px * 2);
+    margin: auto;
+    padding: calc((60px - 14px)/2)14px;
+    text-align: center;
+    line-height: 24px;
+}
+
+.footer {
+    font-size: 12px;
+    color: var(--secondary);
+}
+
+.footer a {
+    color: var(--secondary) !important;
+}
