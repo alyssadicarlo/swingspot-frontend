@@ -2,7 +2,7 @@ import { useState } from "react";
 import QuoteCommentForm from '../QuoteCommentForm';
 import { Button, Modal } from 'react-bootstrap';
 
-const QuoteCommentModal = ({ comment, topic_slug }) => {
+const QuoteCommentModal = ({ comment, fetchTopics, userData }) => {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
@@ -19,7 +19,7 @@ const QuoteCommentModal = ({ comment, topic_slug }) => {
             <Modal.Title>Quote Comment</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-              <QuoteCommentForm comment={comment} topic_slug={topic_slug} handleClose={handleClose} />
+              <QuoteCommentForm comment={comment} handleClose={handleClose} fetchTopics={fetchTopics} userData={userData} />
           </Modal.Body>
           {/* <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

@@ -70,7 +70,7 @@ const AddTopicForm = () => {
             options
         ).then(response => {
             history.push(`/topics/${wholeSlug}`);
-            return response.json()
+            return response
         });
     }
 

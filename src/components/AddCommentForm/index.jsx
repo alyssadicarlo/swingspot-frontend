@@ -1,12 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
-const AddCommentForm = ({ topic_id, topic_slug }) => {
+const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {
     
     const { user, isLoading } = useAuth0();
     
-    const history = useHistory();
     const authToken = process.env.REACT_APP_ACCESS_TOKEN;
 
     const [userData, setUserData] = useState({});
@@ -48,10 +46,9 @@ const AddCommentForm = ({ topic_id, topic_slug }) => {
         await fetch(
             'http://localhost:3333/comments/add',
             options
-        ).then(response => {
-            history.push(`/topics/${topic_slug}`);
-            return response.json()
-        });
+        ).then(response => response);
+        fetchTopics();
+        setCommentText("");
     }
 
     return (

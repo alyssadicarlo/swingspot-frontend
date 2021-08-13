@@ -10,29 +10,21 @@ import Card from '../Card';
 import convertToUserTime from '../../helpers/convertToUserTime';
 import QuoteCommentModal from '../QuoteCommentModal';
 
-const CommentCard = ({ comment, topic_slug }) => {
+const CommentCard = ({ comment, topic_slug, fetchTopics, users }) => {
 
     const [userData, setUserData] = useState({});
 
     const date_posted = new Date(comment.date_posted);
     const converted_time = convertToUserTime(date_posted);
-    const authToken = process.env.REACT_APP_ACCESS_TOKEN;
     
     const distance_between = formatDistance(new Date(), converted_time);
 
     useEffect(() => {
-        (async () => {
-            const userUrl = `https://dev-yxxg1id2.us.auth0.com/api/v2/users?q=username%3A${comment.author}`;
-            const options = {
-                method: 'GET',
-                headers: {
-                authorization: `Bearer ${authToken}` 
-                }
-            };
-            const user = await fetch(userUrl, options).then(response => response.json());
-            setUserData(user[0]);
-        })();
-    }, [authToken, comment.author]);
+        if (users.length !== 0) {
+            const user = users.find(thisUser => thisUser.username === comment.author);
+            setUserData(user);
+        }
+    }, [setUserData, comment, users]);
     
     return (
         <div className="cards-wrapper mb-3 comment-card">
@@ -69,7 +61,7 @@ const CommentCard = ({ comment, topic_slug }) => {
                 </section>
                 <footer className="entry-footer">
                     <small></small>
-                    <QuoteCommentModal comment={comment} topic_slug={topic_slug} />
+                    <QuoteCommentModal comment={comment} topic_slug={topic_slug} fetchTopics={fetchTopics} userData={userData} />
                 </footer>
             </Card>
         </div>

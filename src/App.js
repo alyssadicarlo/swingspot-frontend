@@ -10,8 +10,11 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import AddTopicForm from './components/AddTopicForm';
 import CommentList from './components/CommentList';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
+
+  const { user } = useAuth0();
 
   const storedDarkMode = localStorage.getItem("DARK_MODE");
 
@@ -23,6 +26,7 @@ function App() {
     localStorage.setItem("DARK_MODE", darkMode);
   }, [darkMode]);
 
+
   return (
     <div className={darkMode ? 'App list dark' : 'App list'} data-theme={darkMode ? 'dark' : 'light'}>
         <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode}/>
@@ -32,7 +36,7 @@ function App() {
             <TopicList />
           </Route>
           <Route exact path="/topics/:slug">
-            <CommentList />
+            <CommentList user={user} />
           </Route>
           <Route exact path="/search">
             <SearchForm />
