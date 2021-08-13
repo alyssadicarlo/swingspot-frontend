@@ -1,9 +1,9 @@
 import './index.scss';
 
-const PlaceholderCards = (props) => {
+const PlaceholderCards = () => {
     const cards = [];
 
-    for (let i = 0; i < props.count; i++) {
+    for (let i = 0; i < 6; i++) {
         cards.push(
             <div key={i} className="box-placeholder">
                 <div>

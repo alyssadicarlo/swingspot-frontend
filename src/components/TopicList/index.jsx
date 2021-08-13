@@ -51,7 +51,7 @@ const TopicList = () => {
                             </li>
                         </ul>
                     </article>
-                    <PlaceholderCards count={topics.length} />
+                    <PlaceholderCards />
                 </div>
             </>
         );
