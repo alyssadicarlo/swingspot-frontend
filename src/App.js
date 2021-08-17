@@ -1,4 +1,5 @@
 import { Route } from 'react-router-dom';
+import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Header from './components/Header';
 import TopicList from './components/TopicList';
 import SearchForm from './components/SearchForm';
@@ -52,12 +53,12 @@ function App() {
           <Route exact path="/signup">
             <SignupForm />
           </Route>
-          <Route exact path="/add_topic">
+          <AuthenticatedRoute exact path="/add_topic">
             <AddTopicForm />
-          </Route>
-          <Route exact path="/profile">
+          </AuthenticatedRoute>
+          <AuthenticatedRoute exact path="/profile">
             <CurrentUserProfile />
-          </Route>
+          </AuthenticatedRoute>
         </main>
         <Footer />
     </div>
