@@ -16,7 +16,10 @@ const QuoteCommentForm = ({ comment, handleClose, fetchTopics, userData }) => {
 
         const options = {
             method: 'POST',
-            headers: { 'Content-type': 'application/json' },
+            headers: { 
+                'Content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.TOKEN}`
+            },
             body: JSON.stringify({
                 author: userData.username,
                 author_id: userData.user_id,
@@ -26,12 +29,15 @@ const QuoteCommentForm = ({ comment, handleClose, fetchTopics, userData }) => {
                 quoted_text_author: comment.author
             })
         }
-        await fetch(
+        const response = await fetch(
             'http://localhost:3333/comments/add_quote',
             options
-        ).then(response => response);
-        handleClose();
-        fetchTopics();
+        ).then(response => response.json());
+
+        if (response.success) {
+            handleClose();
+            fetchTopics();
+        }
     }
 
     return (

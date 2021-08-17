@@ -24,7 +24,7 @@ const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {
             setUserData(response);
         }
         if (!isLoading) {getUserData();}
-    }, [authToken, user, isLoading]);
+    }, [user, isLoading, authToken]);
 
     const _handleUpdate = (event) => {
         setCommentText(event.target.value);
@@ -43,12 +43,15 @@ const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {
                 comment_text: commentText
             })
         }
-        await fetch(
+        const response = await fetch(
             'http://localhost:3333/comments/add',
             options
-        ).then(response => response);
-        fetchTopics();
-        setCommentText("");
+        ).then(response => response.json());
+
+        if (response.success) {
+            fetchTopics();
+            setCommentText("");
+        }
     }
 
     return (

@@ -1,19 +1,16 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import './index.css';
+import { Link } from 'react-router-dom';
 
 const SignupButton = () => {
-  const { loginWithRedirect } = useAuth0();
   return (
-    <button
+    <Link to="/signup"
       className="signup-button"
       onClick={() =>
-        loginWithRedirect({
-          screen_hint: "signup",
-        })
+        console.log("signup")
       }
     >
       Sign Up
-    </button>
+    </Link>
   );
 };
 

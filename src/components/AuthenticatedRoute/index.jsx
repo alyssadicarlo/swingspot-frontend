@@ -1,9 +1,8 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { Route } from 'react-router-dom';
 import LoginButon from '../LoginButton';
 
 const AuthenticatedRoute = (props) => {
-    const { isAuthenticated } = useAuth0();
+    const isAuthenticated = true;
 
     return (
         <>

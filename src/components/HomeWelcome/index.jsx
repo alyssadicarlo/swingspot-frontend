@@ -26,8 +26,8 @@ const HomeWelcome = () => {
                         <p>Create a FREE account to participate in the softball discussions.</p>
                     </section>
                     <footer className="entry-footer">
-                        <SignupButton />
-                        <LoginButton />
+                        {/* <SignupButton />
+                        <LoginButton /> */}
                     </footer>
                 </>
             )}

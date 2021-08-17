@@ -1,5 +1,4 @@
 import { Route } from 'react-router-dom';
-import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Header from './components/Header';
 import TopicList from './components/TopicList';
 import SearchForm from './components/SearchForm';
@@ -11,6 +10,9 @@ import { useState, useEffect } from 'react';
 import AddTopicForm from './components/AddTopicForm';
 import CommentList from './components/CommentList';
 import { useAuth0 } from '@auth0/auth0-react';
+import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
+import CurrentUserProfile from './views/CurrentUserProfile';
 
 function App() {
 
@@ -44,9 +46,18 @@ function App() {
           <Route path={`/users/:username`}>
             <Profile />
           </Route>
-          <AuthenticatedRoute exact path="/add_topic">
+          <Route exact path="/login">
+            <LoginForm />
+          </Route>
+          <Route exact path="/signup">
+            <SignupForm />
+          </Route>
+          <Route exact path="/add_topic">
             <AddTopicForm />
-          </AuthenticatedRoute>
+          </Route>
+          <Route exact path="/profile">
+            <CurrentUserProfile />
+          </Route>
         </main>
         <Footer />
     </div>

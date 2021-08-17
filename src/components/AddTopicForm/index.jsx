@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from 'react-router-dom';
 import slugify from 'react-slugify';
 
@@ -14,24 +13,24 @@ const AddTopicForm = () => {
         topic_comment: "",
     });
 
-    const { user } = useAuth0();
-    const authToken = process.env.REACT_APP_ACCESS_TOKEN;
-
     const history = useHistory();
+
+    const token = localStorage.token;
 
     useEffect(() => {
         (async () => {
-            const userUrl = `https://dev-yxxg1id2.us.auth0.com/api/v2/users?q=email%3A${user.email}`;
+            const userUrl = `http://localhost:3333/users/`;
             const options = {
                 method: 'GET',
                 headers: {
-                authorization: `Bearer ${authToken}` 
+                    authorization: `Bearer ${token}` 
                 }
             };
             const response = await fetch(userUrl, options).then(response => response.json());
-            setUserData(response[0]);
+            console.log(response);
+            // setUserData(response[0]);
         })();
-    }, [authToken, user.email]);
+    }, [token]);
 
     const _handleUpdate = (event) => {
         setTopicData({
@@ -56,7 +55,10 @@ const AddTopicForm = () => {
 
         const options = {
             method: 'POST',
-            headers: { 'Content-type': 'application/json' },
+            headers: { 
+                'Content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.TOKEN}`
+            },
             body: JSON.stringify({
                 slug: wholeSlug,
                 name: topicData.name,
@@ -65,13 +67,19 @@ const AddTopicForm = () => {
                 topic_comment: topicData.topic_comment
             })
         }
-        await fetch(
+        const response = await fetch(
             'http://localhost:3333/topics/add',
             options
         ).then(response => {
-            history.push(`/topics/${wholeSlug}`);
-            return response
+            return response.json();
         });
+
+        if (response.success) {
+            history.push(`/topics/${wholeSlug}`);
+        } else {
+            history.push('/login');
+        }
+
     }
 
     return (
