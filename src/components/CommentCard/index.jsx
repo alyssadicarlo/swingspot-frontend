@@ -23,7 +23,7 @@ const CommentCard = ({ comment, topic_slug, fetchTopics, isLoggedIn }) => {
     useEffect(() => {
         (async () => {
             const user = await fetch(
-                `http://localhost:3333/users/${comment.author}`
+                `https://api.swingspot.xyz/users/${comment.author}`
             ).then(response => response.json())
             setUserData(user);
         })()

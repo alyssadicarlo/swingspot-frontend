@@ -36,7 +36,7 @@ const SignupForm = () => {
         }
 
         await fetch(
-            'http://localhost:3333/users/add',
+            'https://api.swingspot.xyz/users/add',
             options
         ).then(response => {
             history.push(`/`);

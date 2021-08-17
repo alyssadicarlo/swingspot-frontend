@@ -17,7 +17,7 @@ const CommentList = (props) => {
     useEffect(() => {
         (async () => {
             const response = await fetch(
-                `http://localhost:3333/topics/${slug}`
+                `https://api.swingspot.xyz/topics/${slug}`
             ).then(response => response.json());
             setTitle(response.topic_data.name);
             setTopicId(response.topic_data.id);
@@ -28,7 +28,7 @@ const CommentList = (props) => {
 
     const fetchTopics = async () => {
         const response = await fetch(
-            `http://localhost:3333/topics/${slug}`
+            `https://api.swingspot.xyz/topics/${slug}`
         ).then(response => response.json());
         setComments(response.comments);
     }
