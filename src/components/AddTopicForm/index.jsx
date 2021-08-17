@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import slugify from 'react-slugify';
 
@@ -6,8 +6,6 @@ import './index.css';
 
 const AddTopicForm = () => {
         
-    const [userData, setUserData] = useState("");
-
     const [topicData, setTopicData] = useState({
         name: "",
         topic_comment: "",
@@ -15,22 +13,8 @@ const AddTopicForm = () => {
 
     const history = useHistory();
 
-    const token = localStorage.token;
-
-    useEffect(() => {
-        (async () => {
-            const userUrl = `http://localhost:3333/users/`;
-            const options = {
-                method: 'GET',
-                headers: {
-                    authorization: `Bearer ${token}` 
-                }
-            };
-            const response = await fetch(userUrl, options).then(response => response.json());
-            console.log(response);
-            // setUserData(response[0]);
-        })();
-    }, [token]);
+    const token = localStorage.getItem('TOKEN');
+    const username = localStorage.getItem('USERNAME');
 
     const _handleUpdate = (event) => {
         setTopicData({
@@ -41,6 +25,14 @@ const AddTopicForm = () => {
 
     const _handleSubmit = async (event) => {
         event.preventDefault();
+
+        const userData = await fetch(`http://localhost:3333/users/${username}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            }
+        }).then(response => response.json());
 
         const slug = slugify(topicData.name);
     
@@ -57,7 +49,7 @@ const AddTopicForm = () => {
             method: 'POST',
             headers: { 
                 'Content-type': 'application/json',
-                'authorization': `Bearer ${localStorage.TOKEN}`
+                'Authorization': `Bearer ${localStorage.TOKEN}`
             },
             body: JSON.stringify({
                 slug: wholeSlug,
@@ -71,10 +63,10 @@ const AddTopicForm = () => {
             'http://localhost:3333/topics/add',
             options
         ).then(response => {
-            return response.json();
+            return response;
         });
 
-        if (response.success) {
+        if (response.status === 200) {
             history.push(`/topics/${wholeSlug}`);
         } else {
             history.push('/login');

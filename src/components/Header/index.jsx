@@ -1,13 +1,12 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import logo from '../../SWINGSPOT.png';
 import LoginButton from '../LoginButton';
 import SignupButton from '../SignupButton';
 import LogoutButton from '../LogoutButton';
+import { connect } from 'react-redux';
 import './index.css';
 
 const Header = (props) => {
-    const { isAuthenticated } = useAuth0();
 
     return (
         <header className="header">
@@ -49,14 +48,14 @@ const Header = (props) => {
                     </li>
                 </ul>
                 <ul className="menu">
-                    {isAuthenticated && (
+                    {props.isLoggedIn && (
                         <>
                             <li>
                                 <LogoutButton />
                             </li>
                         </>
                     )}
-                    {!isAuthenticated && (
+                    {!props.isLoggedIn && (
                         <>
                             <SignupButton />
                             <LoginButton />
@@ -68,4 +67,10 @@ const Header = (props) => {
     );
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps)(Header);

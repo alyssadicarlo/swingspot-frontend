@@ -3,16 +3,28 @@ import { Container, Card} from 'react-bootstrap';
 
 import './index.css';
 
-const QuoteCommentForm = ({ comment, handleClose, fetchTopics, userData }) => {
+const QuoteCommentForm = ({ comment, handleClose, fetchTopics }) => {
 
     const [commentText, setCommentText] = useState("");
+    
+    const token = localStorage.getItem('TOKEN');
+    const username = localStorage.getItem('USERNAME');
 
     const _handleUpdate = (event) => {
         setCommentText(event.target.value);
     }
 
+
     const _handleSubmit = async (event) => {
         event.preventDefault();
+
+        const userData = await fetch(`http://localhost:3333/users/${username}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            }
+        }).then(response => response.json());
 
         const options = {
             method: 'POST',

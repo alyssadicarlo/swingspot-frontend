@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
 import { formatDistance } from 'date-fns';
 import { Row, Col } from 'react-bootstrap';
@@ -10,7 +11,7 @@ import Card from '../Card';
 import convertToUserTime from '../../helpers/convertToUserTime';
 import QuoteCommentModal from '../QuoteCommentModal';
 
-const CommentCard = ({ comment, topic_slug, fetchTopics, users }) => {
+const CommentCard = ({ comment, topic_slug, fetchTopics, isLoggedIn }) => {
 
     const [userData, setUserData] = useState({});
 
@@ -20,11 +21,13 @@ const CommentCard = ({ comment, topic_slug, fetchTopics, users }) => {
     const distance_between = formatDistance(new Date(), converted_time);
 
     useEffect(() => {
-        if (users.length !== 0) {
-            const user = users.find(thisUser => thisUser.username === comment.author);
+        (async () => {
+            const user = await fetch(
+                `http://localhost:3333/users/${comment.author}`
+            ).then(response => response.json())
             setUserData(user);
-        }
-    }, [setUserData, comment, users]);
+        })()
+    }, [setUserData, comment]);
     
     return (
         <div className="cards-wrapper mb-3 comment-card">
@@ -61,11 +64,21 @@ const CommentCard = ({ comment, topic_slug, fetchTopics, users }) => {
                 </section>
                 <footer className="entry-footer">
                     <small></small>
-                    <QuoteCommentModal comment={comment} topic_slug={topic_slug} fetchTopics={fetchTopics} userData={userData} />
+                    {isLoggedIn ? 
+                        <QuoteCommentModal comment={comment} topic_slug={topic_slug} fetchTopics={fetchTopics} userData={userData} />
+                    :
+                        ''
+                    }
                 </footer>
             </Card>
         </div>
     );
 }
 
-export default CommentCard;
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps)(CommentCard);

@@ -1,26 +1,24 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import LoginButton from '../LoginButton';
-import SignupButton from '../SignupButton';
+import { connect } from 'react-redux';
 import './index.css';
 
-const HomeWelcome = () => {
-    const { isAuthenticated } = useAuth0();
+const HomeWelcome = (props) => {
+    
     return (
         <article className="home-info">
-            {isAuthenticated && (
+            {props.isLoggedIn && (
                 <>
                     <header className="entry-header">
-                        <h1>Welcome to SwingSpot!</h1>
+                        <h1>Hi, {localStorage.getItem('USERNAME')}!</h1>
                     </header>
                     <section className="entry-content">
                         <p>Interact with people from the softball community by commenting on the topics below or create a new topic!</p>
                     </section>
                 </>
             )}
-            {!isAuthenticated && (
+            {!props.isLoggedIn && (
                 <>
                     <header className="entry-header">
-                        <h1>Welcome to SwingSpot</h1>
+                        <h1>Welcome to SwingSpot!</h1>
                     </header>
                     <section className="entry-content">
                         <p>Create a FREE account to participate in the softball discussions.</p>
@@ -35,4 +33,10 @@ const HomeWelcome = () => {
     );
 }
 
-export default HomeWelcome;
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps)(HomeWelcome);

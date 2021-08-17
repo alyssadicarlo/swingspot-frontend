@@ -1,30 +1,11 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {
-    
-    const { user, isLoading } = useAuth0();
-    
-    const authToken = process.env.REACT_APP_ACCESS_TOKEN;
-
-    const [userData, setUserData] = useState({});
+const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {    
 
     const [commentText, setCommentText] = useState("");
 
-    useEffect(() => {
-        const getUserData = async () => {
-            const userUrl = `https://dev-yxxg1id2.us.auth0.com/api/v2/users/${user.sub}`
-            const options = {
-                method: 'GET',
-                headers: {
-                authorization: `Bearer ${authToken}` 
-                }
-            };
-            const response = await fetch(userUrl, options).then(response => response.json());
-            setUserData(response);
-        }
-        if (!isLoading) {getUserData();}
-    }, [user, isLoading, authToken]);
+    const username = localStorage.getItem('USERNAME');
+    const token = localStorage.getItem('TOKEN');
 
     const _handleUpdate = (event) => {
         setCommentText(event.target.value);
@@ -32,6 +13,14 @@ const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {
 
     const _handleSubmit = async (event) => {
         event.preventDefault();
+
+        const userData = await fetch(`http://localhost:3333/users/${username}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            }
+        }).then(response => response.json());
 
         const options = {
             method: 'POST',

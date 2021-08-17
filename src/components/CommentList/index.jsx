@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PlaceholderCards from "../PlaceholderCards";
 import CommentCard from "../CommentCard";
 import AddCommentForm from '../AddCommentForm';
 
-const CommentList = ({ user }) => {
+const CommentList = (props) => {
 
     const { slug } = useParams();
 
@@ -12,8 +13,6 @@ const CommentList = ({ user }) => {
     const [title, setTitle] = useState("");
     const [topicId, setTopicId] = useState(-1);
     const [topicSlug, setTopicSlug] = useState("");
-    const [usersData, setUsersData] = useState([]);
-    const [userData, setUserData] = useState({});
 
     useEffect(() => {
         (async () => {
@@ -25,7 +24,7 @@ const CommentList = ({ user }) => {
             setTopicSlug(response.topic_data.slug);
             setComments(response.comments);
         })();
-    }, [setComments, slug, user]);
+    }, [setComments, slug]);
 
     const fetchTopics = async () => {
         const response = await fetch(
@@ -41,17 +40,29 @@ const CommentList = ({ user }) => {
                 {comments.length > 0 ? 
                     (comments.map((comment, index) => {
                         return (
-                            <CommentCard key={index} comment={comment} topic_slug={topicSlug} fetchTopics={fetchTopics} users={usersData} />
+                            <CommentCard key={index} comment={comment} topic_slug={topicSlug} fetchTopics={fetchTopics} />
                         )
                     }))
                 :
                     (<PlaceholderCards />)
                 }
             </div>
-            <h2>Reply</h2>
-            <AddCommentForm topic_id={topicId} topic_slug={topicSlug} fetchTopics={fetchTopics} userData={userData} />
+            {props.isLoggedIn ? 
+                <>
+                    <h2>Reply</h2>
+                    <AddCommentForm topic_id={topicId} topic_slug={topicSlug} fetchTopics={fetchTopics} />
+                </>
+            :
+                <h5>Login to add a comment</h5>
+            }
         </>
     );
 }
 
-export default CommentList;
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps)(CommentList);

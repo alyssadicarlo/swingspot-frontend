@@ -1,18 +1,18 @@
 import { Route } from 'react-router-dom';
 import LoginButon from '../LoginButton';
+import { connect } from 'react-redux';
 
 const AuthenticatedRoute = (props) => {
-    const isAuthenticated = true;
 
     return (
         <>
             <Route exact path={props.path}>
-                {isAuthenticated && (
+                {props.isLoggedIn && (
                     <>
                         {props.children}
                     </>
                 )}
-                {!isAuthenticated && (
+                {!props.isLoggedIn && (
                     <>
                         <h1>Please login to view this page.</h1>
                         <LoginButon />
@@ -23,4 +23,10 @@ const AuthenticatedRoute = (props) => {
     );
 }
 
-export default AuthenticatedRoute;
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps)(AuthenticatedRoute);

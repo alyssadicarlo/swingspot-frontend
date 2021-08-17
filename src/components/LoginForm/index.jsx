@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
 
     const history = useHistory();
 
@@ -39,6 +40,7 @@ const LoginForm = () => {
         if (response.success) {
             localStorage.setItem('TOKEN', response.token);
             localStorage.setItem('USERNAME', response.username);
+            props.onLoggedIn();
         }
         
     }
@@ -61,4 +63,10 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLoggedIn: () => dispatch({type: 'ON_LOGGED_IN'})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(LoginForm);
