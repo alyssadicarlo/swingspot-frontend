@@ -13,7 +13,7 @@ const TopicList = () => {
         (async () => {
             setIsLoading(true);
             const topics = await fetch(
-                `https://api.swingspot.xyz/topics`
+                `http://localhost:3333/topics`
             ).then(response => response.json());
             setTopics(topics);
             setIsLoading(false);
@@ -23,7 +23,7 @@ const TopicList = () => {
     const _handleClick = async (event) => {
         setIsLoading(true);
         const topics = await fetch(
-            `https://api.swingspot.xyz/topics/${event.target.id}`
+            `http://localhost:3333/topics/${event.target.id}`
         ).then(response => response.json());
         setTopics(topics);
         setIsLoading(false);

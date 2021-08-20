@@ -28,7 +28,7 @@ const LoginForm = (props) => {
         }
 
         const response = await fetch(
-            'https://api.swingspot.xyz/users/login',
+            'http://localhost:3333/users/login',
             options
         ).then(response => {
             history.push(`/`);

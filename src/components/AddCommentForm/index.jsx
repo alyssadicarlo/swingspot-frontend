@@ -14,7 +14,7 @@ const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {
     const _handleSubmit = async (event) => {
         event.preventDefault();
 
-        const userData = await fetch(`https://api.swingspot.xyz/users/${username}`, {
+        const userData = await fetch(`http://localhost:3333/users/${username}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {
             })
         }
         const response = await fetch(
-            'https://api.swingspot.xyz/comments/add',
+            'http://localhost:3333/comments/add',
             options
         ).then(response => response.json());
 

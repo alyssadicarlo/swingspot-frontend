@@ -25,7 +25,7 @@ const SearchForm = () => {
 
     const _fetchResults = async (newInput) => {
         const response = await fetch(
-            `https://api.swingspot.xyz/topics/?search=${newInput}`
+            `http://localhost:3333/topics/?search=${newInput}`
         ).then(response => response.json());
         return response;
     }
