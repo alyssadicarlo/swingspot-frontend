@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from '../Button';
 import { Alert } from 'react-bootstrap';
+import debounce from 'lodash.debounce';
 
 const SignupForm = () => {
 
@@ -14,6 +15,7 @@ const SignupForm = () => {
         email: "",
         password: ""
     });
+    const [usernameStatus, setUsernameStatus] = useState(false);
 
     const [error, setError] = useState('');
 
@@ -23,6 +25,26 @@ const SignupForm = () => {
             [event.target.name]: event.target.value,
         });
     }
+
+    const _updateUsername = async (value) => {
+        setInputData({
+            ...inputData,
+            username: value
+        });
+        const isTaken = await _fetchUser(value);
+        setUsernameStatus(isTaken);
+    }
+
+    const _fetchUser = async (username) => {
+        const response = await fetch(
+            `http://localhost:3333/users/${username}`
+        ).then(response => response.json());
+        return response.success;
+    }
+
+    const debouncedCallback = debounce(_updateUsername, 300);
+
+    const debouncedUpdateHandler = useCallback(debouncedCallback, [debouncedCallback]);
 
     const _handleSubmit = async (event) => {
         event.preventDefault();
@@ -45,7 +67,7 @@ const SignupForm = () => {
         ).then(response => response.json());
         
         if (response.success) {
-            history.push(`/`);
+            history.push(`/login`);
             setError('');
         } else {
             setError(response.message);
@@ -79,7 +101,8 @@ const SignupForm = () => {
                     <input name="last_name" className="search-input" type="text" placeholder="Last Name" value={inputData.last_name} onChange={_handleUpdate}/>
                 </div>
                 <div className="search-box mb-3">
-                    <input name="username" className="search-input" type="text" placeholder="Username" value={inputData.username} onChange={_handleUpdate}/>
+                    <input name="username" className="search-input" type="text" placeholder="Username" onChange={(event) => debouncedUpdateHandler(event.target.value)}/>
+                    <small>{usernameStatus ? '❌ Username already taken' : '✅ Username available'}</small>
                 </div>
                 <div className="search-box mb-3">
                     <input name="email" className="search-input" type="email" placeholder="Email" value={inputData.email} onChange={_handleUpdate}/>

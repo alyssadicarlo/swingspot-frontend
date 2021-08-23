@@ -14,7 +14,7 @@ const TopicCard = ({ topic }) => {
     return (
         <Card>
             <header className="entry-header">
-                <Link to={`/topics/${topic.topic_data.slug}`}>
+                <Link className="underline" to={`/topics/${topic.topic_data.slug}`}>
                     <h2>{topic.topic_data.name}</h2>
                 </Link>
             </header>

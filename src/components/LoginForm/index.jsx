@@ -56,9 +56,6 @@ const LoginForm = (props) => {
 
     return (
         <>
-            <header className="page-header">
-                <h1>Log In</h1>
-            </header>
             {!!error ? 
                 <Alert variant="danger">
                     {error}

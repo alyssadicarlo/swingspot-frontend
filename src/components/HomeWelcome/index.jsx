@@ -11,7 +11,7 @@ const HomeWelcome = (props) => {
                         <h1>Hi, {localStorage.getItem('USERNAME')}!</h1>
                     </header>
                     <section className="entry-content">
-                        <p>Interact with people from the softball community by commenting in topic threads or create a new thread!</p>
+                        <p>Interact with people from the softball community by commenting in threads or by creating a new thread!</p>
                     </section>
                 </>
             )}

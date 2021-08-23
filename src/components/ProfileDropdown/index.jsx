@@ -17,8 +17,8 @@ const ProfileDropdown = () => {
 
     return (
         <div className="dropdown">
-            <button className="dropbtn"><img src={user.picture} width={40} /></button>
-            <div class="dropdown-content">
+            <button className="dropbtn"><img className="cropped-img small" src={user.picture} width={40} alt="profile" /></button>
+            <div className="dropdown-content">
                 <Link to="/profile">Profile</Link>
                 <LogoutButton />
             </div>

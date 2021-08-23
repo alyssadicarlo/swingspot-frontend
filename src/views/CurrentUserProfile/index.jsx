@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { Button } from '../../components/Button';
 import { Alert } from 'react-bootstrap';
 import ChangeAvatarModal from "../../components/ChangeAvatarModal";
 import ChangeNameModal from "../../components/ChangeNameModal";
 import ChangePasswordModal from "../../components/ChangePasswordModal";
-import ChangeUsernameModal from "../../components/ChangeUsernameModal";
 
 import './index.css';
 
@@ -89,14 +87,13 @@ const CurrentUserProfile = () => {
                                 <span><strong>Email</strong></span>
                                 <span>{user.email}</span>
                             </div>
-                            <Button className="hover-button">Change email</Button>
                         </div>
                         <div className="card p-3 mb-2 d-flex align-items-center justify-content-between flex-row">
                             <div className="d-flex flex-column">
                                 <span><strong>Username</strong></span>
                                 <span>{user.username}</span>
                             </div>
-                            <ChangeUsernameModal handleSuccess={handleSuccess} updateUserState={updateUserState} />
+                            {/* <ChangeUsernameModal handleSuccess={handleSuccess} updateUserState={updateUserState} /> */}
                         </div>
                         <div className="card p-3 mb-2 d-flex align-items-center justify-content-between flex-row">
                             <div className="d-flex flex-column">

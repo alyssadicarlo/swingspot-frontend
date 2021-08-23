@@ -1,4 +1,10 @@
 .profile-cards .card {
-    background-color: var(--code-bg) !important;
+    background-color: var(--entry) !important;
     color: var(--primary);
+    border: 1px solid var(--border);
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    -ms-border-radius: 0px !important;
+    -o-border-radius: 0px !important;
 }

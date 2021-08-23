@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Container, Card} from 'react-bootstrap';
+import { Button } from '../Button';
 
 import './index.css';
 
@@ -65,7 +66,7 @@ const QuoteCommentForm = ({ comment, handleClose, fetchTopics }) => {
             <div className="search-box mb-3">
                 <textarea rows={10} name="comment_text" className="search-input" placeholder="Comment text" value={commentText} onChange={_handleUpdate}/>
             </div>
-            <button type="submit">Reply</button>
+            <Button className="hover-button" type="submit">Reply</Button>
         </form>
     )
 }

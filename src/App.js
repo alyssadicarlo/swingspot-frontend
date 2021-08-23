@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Header from './components/Header';
 import TopicList from './components/TopicList';
@@ -13,6 +13,7 @@ import CommentList from './components/CommentList';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import CurrentUserProfile from './views/CurrentUserProfile';
+import { LinkButton } from './components/Button';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 
@@ -42,7 +43,19 @@ function App() {
           <main className="main">
             <Home />
             <Route exact path="/topics">
-              <TopicList />
+              <div className="cards-wrapper">
+                <article>
+                    <header className="entry-header flex">
+                        <h2>College Softball Topics</h2>
+                        <LinkButton className="hover-button">
+                            <Link to="/add_topic">
+                                Add Topic
+                            </Link>
+                        </LinkButton>
+                    </header>
+                  </article>
+                <TopicList />
+              </div>
             </Route>
             <Route exact path="/topics/:slug">
               <CommentList />
@@ -54,6 +67,9 @@ function App() {
               <Profile />
             </Route>
             <Route exact path="/login">
+              <header className="page-header">
+                  <h1>Log In</h1>
+              </header>
               <LoginForm />
             </Route>
             <Route exact path="/signup">

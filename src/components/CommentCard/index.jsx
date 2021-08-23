@@ -84,7 +84,7 @@ const CommentCard = ({ comment, topic_slug, fetchTopics, isLoggedIn }) => {
             <Card>
                 <section className="entry-content">
                     <Row>
-                        <Col xs={2}>
+                        <Col xs={2} className="text-center">
                             <img width={70} className="author-img mb-3" src={!!userData ? userData.picture : ''} alt={!!userData ? userData.username : ''} />
                             <p><Link to={`/users/${comment.comment.author}`}>{comment.comment.author}</Link></p>
                         </Col>
