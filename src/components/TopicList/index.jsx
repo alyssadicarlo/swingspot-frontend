@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PlaceholderCards from "../PlaceholderCards";
 import TopicCard from "../TopicCard";
 import { LinkButton } from '../Button';
+import { Row, Col } from 'react-bootstrap';
 import './index.css';
 
 const TopicList = () => {
@@ -59,6 +60,22 @@ const TopicList = () => {
                         </li>
                     </ul>
                 </article>
+                <div className="top-card">
+                    <Row>
+                        <Col>
+                            <h6>Topic</h6>
+                        </Col>
+                        <Col xs={2}>
+                            <h6>Author</h6>
+                        </Col>
+                        <Col xs={1}>
+                            <h6>Replies</h6>
+                        </Col>
+                        <Col xs={1}>
+                            <h6>Views</h6>
+                        </Col>
+                    </Row>
+                </div>
                 {topics.length > 0 ?
                     (topics.map(topic => {
                         return (

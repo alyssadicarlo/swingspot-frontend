@@ -53,3 +53,9 @@
     border-top: 0;
     cursor: pointer;
 }
+
+.top-card {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+}

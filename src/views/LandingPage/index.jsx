@@ -72,12 +72,12 @@ const LandingPage = (props) => {
                             <LoginForm />
                         </Card>
                     }
-                    <Card className="mb-3">
+                    <div className="mb-3">
                         <h5 className="mb-3">Latest Posts</h5>
                         {latestPosts.map((post, index) => 
                             <LatestPostCard post={post} key={`${post.slug}--${index}`} /> 
                         )}
-                    </Card>
+                    </div>
                     <Card>
                         <h5 className="mb-3">Forum Statistics</h5>
                         <div className="d-flex justify-content-between flex-row">

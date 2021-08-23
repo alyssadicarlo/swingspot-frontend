@@ -10,6 +10,7 @@ const CurrentUserProfile = () => {
 
     const [user, setUser] = useState({});
     const [success, setSuccess] = useState('');
+    const [registeredYear, setRegisteredYear] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -18,6 +19,8 @@ const CurrentUserProfile = () => {
                 `http://localhost:3333/users/${username}`
             ).then(response => response.json());
             setUser(response);
+            const date = new Date(user.registered_date);
+            setRegisteredYear(date.getFullYear());
         })();
     }, [setUser]);
 
@@ -52,11 +55,11 @@ const CurrentUserProfile = () => {
                                 alt="Profile"
                                 className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
                                 /> : ''}
-                                <h5 className="mt-2">{user.username}</h5>
                             </div>
                             <div className="col-md text-center text-md-left">
                                 <h2>{user.first_name} {user.last_name}</h2>
-                                <p className="lead text-muted">{user.email}</p>
+                                <p className="lead text-muted">{user.username}</p>
+                                <p className="text-muted">Joined in {registeredYear}</p>
                             </div>
                         </div>
                     </div>

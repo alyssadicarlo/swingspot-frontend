@@ -116,7 +116,16 @@ a {
 small {
   color: var(--secondary);
 }
-
+/* 
 .underline:hover{
   text-decoration: underline !important;
+} */
+
+.hover-card:hover {
+  background-color: var(--code-bg);
+  cursor: pointer;
+}
+
+.no-pointer {
+  cursor: default !important;
 }

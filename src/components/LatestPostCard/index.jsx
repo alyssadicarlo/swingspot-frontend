@@ -1,6 +1,7 @@
 import convertToUserTime from '../../helpers/convertToUserTime';
 import { formatDistance } from 'date-fns';
 import { Row, Col } from 'react-bootstrap';
+import Card from '../Card';
 
 const LatestPostCard = ({ post }) => {
     
@@ -10,7 +11,7 @@ const LatestPostCard = ({ post }) => {
     const distance_between = formatDistance(new Date(), converted_time);
 
     return (
-        <div className="mb-2">
+        <Card className="hover-card no-pointer">
             <Row>
                 <Col xs={2}>
                     <img src={post.picture} className="rounded-circle" width={30} alt={`${post.author} avatar`} />
@@ -20,7 +21,7 @@ const LatestPostCard = ({ post }) => {
                     <small>Latest: {post.author} • {distance_between} ago</small>
                 </Col>
             </Row>
-        </div>   
+        </Card>
     )
 }
 
