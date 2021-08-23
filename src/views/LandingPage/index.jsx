@@ -78,8 +78,8 @@ const LandingPage = (props) => {
                             <LatestPostCard post={post} key={`${post.slug}--${index}`} /> 
                         )}
                     </div>
+                    <h5 className="mb-3">Forum Statistics</h5>
                     <Card>
-                        <h5 className="mb-3">Forum Statistics</h5>
                         <div className="d-flex justify-content-between flex-row">
                             <h6>Topics:</h6>
                             <h6>{stats.topics}</h6>
