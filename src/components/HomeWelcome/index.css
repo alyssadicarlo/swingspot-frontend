@@ -15,11 +15,10 @@
 }
 
 .entry-footer a {
-    background-color: var(--theme);
+    background-color: var(--tertiary);
     color: var(--mainColor);
     padding: 4px 10px;
     font-weight: 700;
-    border: 1px solid var(--mainColor);
     margin: 5px;
     cursor: pointer;
     border-radius: 8px;

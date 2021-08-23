@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from '../Button';
 
 const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {    
 
@@ -48,7 +49,7 @@ const AddCommentForm = ({ topic_id, topic_slug, fetchTopics }) => {
             <div className="search-box mb-3">
                 <textarea rows={5} name="comment_text" className="search-input" placeholder="Comment text" value={commentText} onChange={_handleUpdate}/>
             </div>
-            <button type="submit">Reply</button>
+            <Button className="hover-button" type="submit">Reply</Button>
         </form>
     )
 }

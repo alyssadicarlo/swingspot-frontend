@@ -3,6 +3,7 @@ import logo from '../../SWINGSPOT.png';
 import LoginButton from '../LoginButton';
 import SignupButton from '../SignupButton';
 import LogoutButton from '../LogoutButton';
+import ProfileDropdown from '../ProfileDropdown';
 import { connect } from 'react-redux';
 import './index.css';
 
@@ -51,7 +52,7 @@ const Header = (props) => {
                     {props.isLoggedIn && (
                         <>
                             <li>
-                                <LogoutButton />
+                                <ProfileDropdown />
                             </li>
                         </>
                     )}

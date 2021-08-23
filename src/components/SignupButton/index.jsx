@@ -1,16 +1,17 @@
-import './index.css';
 import { Link } from 'react-router-dom';
+import { LinkButton } from '../Button';
 
 const SignupButton = () => {
   return (
-    <Link to="/signup"
-      className="signup-button"
-      onClick={() =>
-        console.log("signup")
-      }
-    >
-      Sign Up
-    </Link>
+    <LinkButton className="hover-button">
+      <Link to="/signup"
+        onClick={() =>
+          console.log("signup")
+        }
+      >
+        Sign Up
+      </Link>
+    </LinkButton>
   );
 };
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { formatDistance } from 'date-fns';
 import { Row, Col } from 'react-bootstrap';
@@ -85,7 +86,7 @@ const CommentCard = ({ comment, topic_slug, fetchTopics, isLoggedIn }) => {
                     <Row>
                         <Col xs={2}>
                             <img width={70} className="author-img mb-3" src={!!userData ? userData.picture : ''} alt={!!userData ? userData.username : ''} />
-                            <p>{comment.comment.author}</p>
+                            <p><Link to={`/users/${comment.comment.author}`}>{comment.comment.author}</Link></p>
                         </Col>
                         <Col>
                             {!!comment.comment.quoted_comment ?

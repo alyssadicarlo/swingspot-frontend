@@ -1,5 +1,7 @@
-import { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Button } from '../Button';
+import { Alert } from 'react-bootstrap';
 
 const SignupForm = () => {
 
@@ -11,7 +13,9 @@ const SignupForm = () => {
         username: "",
         email: "",
         password: ""
-    })
+    });
+
+    const [error, setError] = useState('');
 
     const _handleUpdate = (event) => {
         setInputData({
@@ -35,13 +39,24 @@ const SignupForm = () => {
             })
         }
 
-        await fetch(
+        const response = await fetch(
             'http://localhost:3333/users/add',
             options
-        ).then(response => {
+        ).then(response => response.json());
+        
+        if (response.success) {
             history.push(`/`);
-            return response;
-        });
+            setError('');
+        } else {
+            setError(response.message);
+            setInputData({
+                first_name: "",
+                last_name: "",
+                username: "",
+                email: "",
+                password: ""
+            })
+        }
     }
 
     return (
@@ -49,6 +64,13 @@ const SignupForm = () => {
             <header className="page-header">
                 <h1>Sign Up</h1>
             </header>
+            {!!error ? 
+                <Alert variant="danger">
+                    {error}
+                </Alert>
+            :
+                ''
+            }
             <form onSubmit={_handleSubmit}>
                 <div className="search-box mb-3">
                     <input name="first_name" className="search-input" type="text" placeholder="First Name" value={inputData.first_name} onChange={_handleUpdate}/>
@@ -65,7 +87,7 @@ const SignupForm = () => {
                 <div className="search-box mb-3">
                     <input name="password" className="search-input" type="password" placeholder="Password" value={inputData.password} onChange={_handleUpdate}/>
                 </div>
-                <button type="submit">Sign Up</button>
+                <Button className="hover-button" type="submit">Sign Up</Button>
             </form>
         </>
     )

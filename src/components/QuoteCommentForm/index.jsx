@@ -30,7 +30,7 @@ const QuoteCommentForm = ({ comment, handleClose, fetchTopics }) => {
             method: 'POST',
             headers: { 
                 'Content-type': 'application/json',
-                'authorization': `Bearer ${localStorage.TOKEN}`
+                'authorization': `Bearer ${localStorage.getItem('TOKEN')}`
             },
             body: JSON.stringify({
                 author: userData.username,

@@ -1,19 +1,14 @@
 .logout-button {
-    background-color: var(--theme);
-    color: var(--mainColor);
-    padding: 4px 10px;
-    font-weight: 700;
-    border: 1px solid var(--mainColor);
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
+    color: var(--primary);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
 }
 
 .logout-button:hover {
-    background-color: var(--mainColor);
-    color: var(--theme);
+    background-color: var(--code-bg);
 }

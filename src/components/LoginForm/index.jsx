@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom";
 import { connect } from 'react-redux';
+import { Button } from '../Button';
+import { Alert } from 'react-bootstrap';
 
 const LoginForm = (props) => {
 
@@ -10,6 +12,8 @@ const LoginForm = (props) => {
         email: "",
         password: ""
     });
+
+    const [error, setError] = useState("");
 
     const _handleUpdate = (event) => {
         setInputData({
@@ -31,16 +35,21 @@ const LoginForm = (props) => {
             'http://localhost:3333/users/login',
             options
         ).then(response => {
-            history.push(`/`);
             return response.json()
-        }).catch(error => {
-            return error;
         });
 
         if (response.success) {
             localStorage.setItem('TOKEN', response.token);
             localStorage.setItem('USERNAME', response.username);
             props.onLoggedIn();
+            history.push('/');
+            setError('');
+        } else {
+            setError(response.message);
+            setInputData({
+                email: '',
+                password: ''
+            })
         }
         
     }
@@ -50,14 +59,21 @@ const LoginForm = (props) => {
             <header className="page-header">
                 <h1>Log In</h1>
             </header>
+            {!!error ? 
+                <Alert variant="danger">
+                    {error}
+                </Alert>
+            :
+                ''
+            }
             <form onSubmit={_handleSubmit}>
                 <div className="search-box mb-3">
                     <input name="email" className="search-input" type="email" placeholder="Email" value={inputData.email} onChange={_handleUpdate}/>
                 </div>
                 <div className="search-box mb-3">
-                    <input name="password" className="search-input" type="password" placeholder="Password" value={inputData.last_name} onChange={_handleUpdate}/>
+                    <input name="password" className="search-input" type="password" placeholder="Password" value={inputData.password} onChange={_handleUpdate}/>
                 </div>
-                <button type="submit">Log In</button>
+                <Button className="hover-button" type="submit">Log In</Button>
             </form>
         </>
     )

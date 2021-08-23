@@ -1,0 +1,4 @@
+.profile-cards .card {
+    background-color: var(--code-bg) !important;
+    color: var(--primary);
+}

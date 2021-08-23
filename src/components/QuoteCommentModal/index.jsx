@@ -1,6 +1,6 @@
 import { useState } from "react";
 import QuoteCommentForm from '../QuoteCommentForm';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 import './index.css';
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import PlaceholderCards from "../PlaceholderCards";
 import TopicCard from "../TopicCard";
+import { LinkButton } from '../Button';
 import './index.css';
 
 const TopicList = () => {
@@ -36,9 +37,11 @@ const TopicList = () => {
                     <article>
                         <header className="entry-header flex">
                             <h2>College Softball Topics</h2>
-                            <Link to="/add_topic" className="add_topic_button">
-                                Add Topic
-                            </Link>
+                            <LinkButton>
+                                <Link to="/add_topic">
+                                    Add Topic
+                                </Link>
+                            </LinkButton>
                         </header>
                     </article>
                     <article className="entry-nav">
@@ -62,9 +65,11 @@ const TopicList = () => {
                     <article>
                         <header className="entry-header flex">
                             <h2>College Softball Topics</h2>
-                            <Link to="/add_topic" className="add_topic_button">
-                                Add Topic
-                            </Link>
+                            <LinkButton className="hover-button">
+                                <Link to="/add_topic">
+                                    Add Topic
+                                </Link>
+                            </LinkButton>
                         </header>
                     </article>
                     <article className="entry-nav">

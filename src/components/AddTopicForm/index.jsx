@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import slugify from 'react-slugify';
+import { Button } from '../Button';
 
 import './index.css';
 
@@ -89,7 +90,7 @@ const AddTopicForm = () => {
                 <div className="search-box mb-3">
                     <textarea rows={10} name="topic_comment" className="search-input" placeholder="Topic comment" value={topicData.topic_comment} onChange={_handleUpdate}/>
                 </div>
-                <button type="submit">Add Topic</button>
+                <Button className="hover-button" type="submit">Add Topic</Button>
             </form>
         </>
     )
