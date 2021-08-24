@@ -7,6 +7,10 @@ SwingSpot is your opportunity to get involved with the softball community. Swing
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Screenshots
+<img src="https://raw.githubusercontent.com/alyssadicarlo/swingspot-frontend/main/screenshot.png">
+<img src="https://raw.githubusercontent.com/alyssadicarlo/swingspot-frontend/main/screenshot2.png">
+
 ## Features
 - User authentication
 - User profiles
@@ -16,6 +20,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Ability to like comments
 - Update user data when logged in
 - Search for topics
+- Light/Dark modes
 
 ## Technologies/Frameworks
 - React
