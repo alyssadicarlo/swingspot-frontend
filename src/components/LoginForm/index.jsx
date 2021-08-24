@@ -32,7 +32,7 @@ const LoginForm = (props) => {
         }
 
         const response = await fetch(
-            'http://localhost:3333/users/login',
+            'https://api.swingspot.xyz/users/login',
             options
         ).then(response => {
             return response.json()

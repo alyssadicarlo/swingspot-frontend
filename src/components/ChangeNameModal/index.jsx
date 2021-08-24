@@ -39,7 +39,7 @@ const ChangeNameModal = (props) => {
             })
         }
         const response = await fetch(
-            'http://localhost:3333/users/update/name',
+            'https://api.swingspot.xyz/users/update/name',
             options
         ).then(response => response.json());
 

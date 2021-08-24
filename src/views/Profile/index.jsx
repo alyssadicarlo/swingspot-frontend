@@ -12,14 +12,14 @@ const Profile = () => {
 
   useEffect(() => {
     (async () => {
-      const userUrl = `http://localhost:3333/users/${username}`;
+      const userUrl = `https://api.swingspot.xyz/users/${username}`;
       const user = await fetch(userUrl).then(response => response.json());
       setUser(user);
       const date = new Date(user.registered_date);
       setRegisteredYear(date.getFullYear());
       
       const comments = await fetch(
-        `http://localhost:3333/comments`
+        `https://api.swingspot.xyz/comments`
       ).then(response => response.json());
       const userComments = comments.filter(comment => comment.author === user.username);
       setUserComments(userComments.splice(0,5));

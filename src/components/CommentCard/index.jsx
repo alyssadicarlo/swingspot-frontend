@@ -27,17 +27,17 @@ const CommentCard = ({ comment, topic_slug, fetchTopics, isLoggedIn }) => {
     useEffect(() => {
         (async () => {
             const user = await fetch(
-                `http://localhost:3333/users/${comment.comment.author}`
+                `https://api.swingspot.xyz/users/${comment.comment.author}`
             ).then(response => response.json())
             setUserData(user);
 
             const currentUser = await fetch(
-                `http://localhost:3333/users/${localStorage.getItem('USERNAME')}`
+                `https://api.swingspot.xyz/users/${localStorage.getItem('USERNAME')}`
             ).then(response => response.json());
             setCurrentUser(currentUser);
 
             const likes = await fetch(
-                `http://localhost:3333/comments/${comment.comment.id}/likes`
+                `https://api.swingspot.xyz/comments/${comment.comment.id}/likes`
             ).then(response => response.json());
             setLikes(likes.length);
 
@@ -55,7 +55,7 @@ const CommentCard = ({ comment, topic_slug, fetchTopics, isLoggedIn }) => {
 
     const _favorite = async () => {
         const response = await fetch(
-            `http://localhost:3333/comments/${comment.comment.id}/favorite`
+            `https://api.swingspot.xyz/comments/${comment.comment.id}/favorite`
         , {
             method: 'POST',
             headers: {

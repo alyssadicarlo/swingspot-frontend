@@ -9,7 +9,7 @@ const ProfileDropdown = () => {
 
     useEffect(() => {
         (async () => {
-            const response = await fetch(`http://localhost:3333/users/${username}`).then(response => response.json());
+            const response = await fetch(`https://api.swingspot.xyz/users/${username}`).then(response => response.json());
             console.log(response);
             setUser(response);
         })();

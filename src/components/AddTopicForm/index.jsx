@@ -27,7 +27,7 @@ const AddTopicForm = () => {
     const _handleSubmit = async (event) => {
         event.preventDefault();
 
-        const userData = await fetch(`http://localhost:3333/users/${username}`, {
+        const userData = await fetch(`https://api.swingspot.xyz/users/${username}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const AddTopicForm = () => {
             })
         }
         const response = await fetch(
-            'http://localhost:3333/topics/add',
+            'https://api.swingspot.xyz/topics/add',
             options
         ).then(response => {
             return response;

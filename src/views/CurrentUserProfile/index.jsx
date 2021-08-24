@@ -16,7 +16,7 @@ const CurrentUserProfile = () => {
         (async () => {
             const username = localStorage.getItem('USERNAME');
             const response = await fetch(
-                `http://localhost:3333/users/${username}`
+                `https://api.swingspot.xyz/users/${username}`
             ).then(response => response.json());
             setUser(response);
             const date = new Date(user.registered_date);

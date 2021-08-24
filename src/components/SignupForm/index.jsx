@@ -37,7 +37,7 @@ const SignupForm = () => {
 
     const _fetchUser = async (username) => {
         const response = await fetch(
-            `http://localhost:3333/users/${username}`
+            `https://api.swingspot.xyz/users/${username}`
         ).then(response => response.json());
         return response.success;
     }
@@ -62,7 +62,7 @@ const SignupForm = () => {
         }
 
         const response = await fetch(
-            'http://localhost:3333/users/add',
+            'https://api.swingspot.xyz/users/add',
             options
         ).then(response => response.json());
         

@@ -20,15 +20,15 @@ const LandingPage = (props) => {
     useEffect(() => {
         (async () => {
             const comments = await fetch(
-                `http://localhost:3333/comments`
+                `https://api.swingspot.xyz/comments`
             ).then(response => response.json());
 
             const topics = await fetch(
-                `http://localhost:3333/topics`
+                `https://api.swingspot.xyz/topics`
             ).then(response => response.json());
 
             const users = await fetch(
-                `http://localhost:3333/users`
+                `https://api.swingspot.xyz/users`
             ).then(response => response.json());
 
             setStats({

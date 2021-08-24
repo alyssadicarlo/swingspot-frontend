@@ -40,7 +40,7 @@ const ChangePasswordModal = (props) => {
             })
         }
         const response = await fetch(
-            'http://localhost:3333/users/update/password',
+            'https://api.swingspot.xyz/users/update/password',
             options
         ).then(response => response.json());
 

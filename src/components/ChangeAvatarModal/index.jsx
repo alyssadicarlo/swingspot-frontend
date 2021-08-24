@@ -32,7 +32,7 @@ const ChangeAvatarModal = (props) => {
             })
         }
         const response = await fetch(
-            'http://localhost:3333/users/update/picture',
+            'https://api.swingspot.xyz/users/update/picture',
             options
         ).then(response => response.json());
 
